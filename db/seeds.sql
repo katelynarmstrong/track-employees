@@ -12,10 +12,10 @@ VALUES
 ('UI', 65000, 1),
 ('Front End Engineer', 70000, 2),
 ('Back End Engineer', 75000, 2),
-('Project Manager', 100000, 3),
+('Project Manager', 100000, 3);
 
 Insert INTO department (name)
 VALUES
 ('User'),
 ('Engineering'),
-('Management'),
+('Management');
