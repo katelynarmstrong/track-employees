@@ -34,7 +34,6 @@ function initialPrompt() {
           "View All Employees by Department",
           "View All Departments",
           "View All Roles",
-          "View All Department Budgets",
           "Update Employee Role",
           "Update Employee Manager",
           "Add Employee",
