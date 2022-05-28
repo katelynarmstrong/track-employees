@@ -121,7 +121,7 @@ function viewEmployees() {
 }
 // view all employees by department
 function viewEmployeesByDepartment() {
-  sql = `SELECT employees.first_name, employees.last_name, departments.department_name AS department 
+  let sql = `SELECT employees.first_name, employees.last_name, departments.department_name AS department 
           FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments 
           ON roles.department_id = departments.id ORDER BY department`;
 
@@ -135,7 +135,7 @@ function viewEmployeesByDepartment() {
 }
 // view all roles
 function viewRoles() {
-  sql = `SELECT roles.id, roles.title, departments.department_name AS department FROM roles
+  let sql = `SELECT roles.id, roles.title, departments.department_name AS department FROM roles
           INNER JOIN departments ON roles.department_id = departments.id`;
 
   db.query(sql, function (err, res) {
@@ -148,7 +148,7 @@ function viewRoles() {
 }
 // view all departments
 function viewDepartments() {
-  sql = `SELECT  departments.id as 'ID', departments.department_name AS 'Department' FROM departments`;
+  let sql = `SELECT  departments.id as 'ID', departments.department_name AS 'Department' FROM departments`;
 
   db.query(sql, function (err, res) {
     if (err) throw err;
@@ -217,7 +217,7 @@ function addEmployee() {
                   const manager = managerChocie.manager;
                   params.push(manager);
 
-                  const sql = `INSERT INTO employees (first_name, last_name, role_id, manager_id)
+                  let sql = `INSERT INTO employees (first_name, last_name, role_id, manager_id)
                                       VALUES (?,?,?,?)`;
                   db.query(sql, params, (err) => {
                     if (err) throw err;
