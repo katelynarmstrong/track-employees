@@ -20,4 +20,4 @@ const db = mysql.createConnection(
   });
   
 
-  module.export = db;
+  module.exports = db;

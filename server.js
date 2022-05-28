@@ -106,11 +106,11 @@ function initialPrompt() {
 
 // view all employees
 function viewEmployees() {
-  sql = `SELECT E.id AS id, E.first_name AS 'first name', E.last_name AS 'last name', 
-  R.title AS role, D.department_name AS department, CONCAT(M.first_name, " ", M.last_name) AS manager
-  FROM employees AS E LEFT JOIN roles AS R ON E.role_id = R.id
-  LEFT JOIN departments AS D ON R.department_id = D.id
-  LEFT JOIN employees AS M ON E.manager_id = M.id`;
+  sql = `SELECT employees.*, role.name 
+  AS role_id 
+  FROM employees 
+  LEFT JOIN employees 
+  ON employees.role_id manager_id`;
   db.query(sql, function (err, res) {
     if (err) throw err;
 
