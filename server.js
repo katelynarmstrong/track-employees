@@ -288,7 +288,7 @@ function addDepartment() {
     ])
     .then((answer) => {
       db.query(
-        `INSERT INTO departments (department_name) VALUES (?)`,
+        `INSERT * INTO departments`,
         answer.newDepartment,
         (err, res) => {
           if (err) throw err;
