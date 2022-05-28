@@ -17,6 +17,6 @@ https://github.com/katelynarmstrong/track-employees
 ## Screencastify Video
 
 ## Screenshot:
-
+![Screen Shot 2022-05-27 at 9 42 14 PM](https://user-images.githubusercontent.com/93275108/170806702-2427dc81-d789-4b05-a677-061ed9b050d8.png)
 
 Made with ♥ by Katelyn Armstrong
