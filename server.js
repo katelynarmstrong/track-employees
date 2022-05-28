@@ -60,10 +60,6 @@ function initialPrompt() {
           viewRoles();
           break;
 
-        case "View All Department Budgets":
-          viewBudgetByDepartment();
-          break;
-
         case "Update Employee Role":
           updateEmployee();
           break;
@@ -106,13 +102,8 @@ function initialPrompt() {
 
 // view all employees
 function viewEmployees() {
-  sql = `SELECT employees.*, role.name 
-  AS role_id 
-  FROM employees 
-  LEFT JOIN employees 
-  ON employees.role_id manager_id`;
+  sql = `SELECT * FROM employees`;
   db.query(sql, function (err, res) {
-    if (err) throw err;
 
     console.log("Employees:");
     console.table(res);
@@ -121,9 +112,7 @@ function viewEmployees() {
 }
 // view all employees by department
 function viewEmployeesByDepartment() {
-  let sql = `SELECT employees.first_name, employees.last_name, departments.department_name AS department 
-          FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments 
-          ON roles.department_id = departments.id ORDER BY department`;
+  let sql = `SELECT * FROM employees`;
 
   db.query(sql, function (err, res) {
     if (err) throw err;
@@ -135,8 +124,7 @@ function viewEmployeesByDepartment() {
 }
 // view all roles
 function viewRoles() {
-  let sql = `SELECT roles.id, roles.title, departments.department_name AS department FROM roles
-          INNER JOIN departments ON roles.department_id = departments.id`;
+  let sql = `SELECT * FROM role`;
 
   db.query(sql, function (err, res) {
     if (err) throw err;
@@ -148,7 +136,7 @@ function viewRoles() {
 }
 // view all departments
 function viewDepartments() {
-  let sql = `SELECT  departments.id as 'ID', departments.department_name AS 'Department' FROM departments`;
+  let sql = `SELECT * FROM department`;
 
   db.query(sql, function (err, res) {
     if (err) throw err;
@@ -179,9 +167,8 @@ function addEmployee() {
     .then((answer) => {
       const params = [answer.firstName, answer.lastName];
 
-      const roleSql = `SELECT roles.id, roles.title FROM roles`;
+      let roleSql = `INSERT * INTO employees`;
       db.query(roleSql, (err, data) => {
-        if (err) throw err;
 
         const roles = data.map(({ id, title }) => ({ name: title, value: id }));
         inquirer
@@ -199,7 +186,6 @@ function addEmployee() {
 
             const managerSql = `SELECT * FROM employees`;
             db.query(managerSql, (err, data) => {
-              if (err) throw error;
               const managers = data.map(({ id, first_name, last_name }) => ({
                 name: first_name + " " + last_name,
                 value: id,
@@ -322,7 +308,6 @@ function updateEmployee() {
               FROM employees, roles, departments WHERE departments.id = roles.department_id AND roles.id = employees.role_id`;
 
   db.query(sql, (err, response) => {
-    if (err) throw err;
 
     let employeeArray = [];
     response.forEach((employee) => {
