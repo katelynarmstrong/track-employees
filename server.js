@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql2");
 const apiRoutes = require("./routes/apiRoutes");
+const db = require("./db/connection");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -17,7 +18,6 @@ app.use((req, res) => {
 });
 
 // Start server after DB connection
-//KEEP AT BOTTOM OF SERVER.JS
 db.connect((err) => {
   if (err) throw err;
   console.log("Database connected.");
