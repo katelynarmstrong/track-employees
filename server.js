@@ -167,7 +167,7 @@ function addEmployee() {
     .then((answer) => {
       const params = [answer.firstName, answer.lastName];
 
-      let roleSql = `INSERT * INTO employees`;
+      let roleSql = `SELECT * FROM role`;
       db.query(roleSql, (err, data) => {
 
         const roles = data.map(({ id, title }) => ({ name: title, value: id }));
